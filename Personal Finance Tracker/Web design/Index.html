@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Finance Dashboard</h1>
+        <nav>
+            <button id="logout-btn">Logout</button>
+        </nav>
+    </header>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard Overview</h2>
+            <div id="summary">
+                <p>Total Income: $<span id="total-income">0.00</span></p>
+                <p>Total Expenses: $<span id="total-expenses">0.00</span></p>
+                <p>Net Savings: $<span id="net-savings">0.00</span></p>
+            </div>
+            <div id="charts-container">
+                <canvas id="spending-pie-chart"></canvas>
+                <canvas id="spending-line-chart"></canvas>
+            </div>
+        </section>
+        <section id="transactions">
+            <h2>Transactions</h2>
+            <form id="transaction-form">
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount" required>
+                <select id="type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                </select>
+                <button type="submit">Add Transaction</button>
+            </form>
+            <ul id="transaction-list"></ul>
+        </section>
+        <section id="budgets">
+            <h2>Budgets</h2>
+            <ul id="budget-list"></ul>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
