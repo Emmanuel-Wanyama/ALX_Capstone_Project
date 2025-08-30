@@ -34,9 +34,9 @@ Technical Stack
 This project is built as a full-stack application.
 
 Backend (API)
-Technology: [Specify your backend technology, e.g., Node.js with Express, Python with Django/Flask, etc.]
+Technology: Python with Django
 
-Database: [Specify your database, e.g., MongoDB, PostgreSQL, SQLite, etc.]
+Database: SQLite
 
 API Type: RESTful API
 
@@ -51,9 +51,9 @@ GET /api/dashboard
 GET /api/transactions
 
 Frontend
-Technology: [Specify your frontend technology, e.g., Vanilla JS, React, Vue, etc.]
+Technology: HTML,
 
-Styling: [Specify your styling, e.g., Plain CSS, Tailwind CSS, etc.]
+Styling: Plain CSS
 
 Charting Library: Chart.js
 
