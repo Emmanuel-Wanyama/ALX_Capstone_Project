@@ -58,3 +58,131 @@ Styling: Plain CSS
 Charting Library: Chart.js
 
 Installation
+
+
+Data Models
+User
+
+id: Unique identifier
+
+username: Unique username
+
+email: User's email address
+
+password_hash: Hashed password
+
+date_joined: Timestamp
+
+Category
+
+id: Unique identifier
+
+name: e.g. "Groceries", "Salary"
+
+type: "income" or "expense"
+
+user: Foreign key linking to the User model
+
+Transaction
+
+id: Unique identifier
+
+amount: The monetary value
+
+description: A short description of the transaction
+
+type: "income" or "expense"
+
+date: The date of the transaction
+
+category: Foreign key linking to the Category model
+
+user: Foreign key linking to the User model
+
+Budget
+
+id: Unique identifier
+
+amount: The budget amount
+
+category: Foreign key linking to the Category model
+
+user: Foreign key linking to the User model
+
+API Endpoints
+Authentication
+POST /api/register
+
+Description: Creates a new user account.
+
+Request Body: username, email, password.
+
+POST /api/login
+
+Description: Authenticates a user.
+
+Request Body: username, password.
+
+Response: Returns an authentication token.
+
+Transactions
+GET /api/transactions
+
+Description: Retrieves a list of all transactions for the authenticated user.
+
+Query Parameters: category, start_date, end_date.
+
+POST /api/transactions
+
+Description: Creates a new transaction.
+
+Request Body: amount, description, type, date, category_id.
+
+GET /api/transactions/{id}
+
+Description: Retrieves a specific transaction by its ID.
+
+PUT /api/transactions/{id}
+
+Description: Updates an existing transaction.
+
+Request Body: amount, description, type, date, category_id.
+
+DELETE /api/transactions/{id}
+
+Description: Deletes a specific transaction.
+
+Categories
+GET /api/categories
+
+Description: Lists all categories for the authenticated user.
+
+POST /api/categories
+
+Description: Creates a new category.
+
+Request Body: name, type.
+
+Budgets
+GET /api/budgets
+
+Description: Retrieves a list of all budgets for the authenticated user.
+
+POST /api/budgets
+
+Description: Creates a new budget.
+
+Request Body: amount, category_id.
+
+PUT /api/budgets/{id}
+
+Description: Updates an existing budget.
+
+Request Body: amount.
+
+Dashboard Summary
+GET /api/dashboard
+
+Description: Fetches summary data for the dashboard.
+
+Response: Returns total income, total expenses, a list of latest transactions, and budget progress.
