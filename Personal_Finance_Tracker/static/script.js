@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { expense: 'Grocery', amount: 220, account: 'Savings', date: 'April 25, 2025' },
         { expense: 'Subscriptions', amount: 120, account: 'Savings', date: 'April 22, 2025' },
         { expense: 'Electricity', amount: 80, account: 'Checking Account', date: 'April 16, 2025' },
-        { expense: 'Rent', amount: 1200, account: 'Riverstone Bank', date: 'April 1, 2025' },
+        { expense: 'Rent', amount: 1200, account: 'Equity Bank', date: 'April 1, 2025' },
     ];
     
     const sampleIncomes = [
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sampleAccounts = [
         { name: 'Checking Account', balance: 5200 },
         { name: 'Savings Account', balance: 15500 },
+        { name: 'Credit Card', balance: -200 },
         { name: 'Investment Fund', balance: 35000 },
     ];
 
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.innerHTML = `
                 <div class="flex justify-between items-center">
                     <p class="font-medium">${budget.category}</p>
-                    <p class="text-sm text-gray-600">Kes.${budget.spent} of Kes.${budget.amount}</p>
+                    <p class="text-sm text-gray-600">KES ${budget.spent} of KES ${budget.amount}</p>
                 </div>
                 <div class="budget-progress">
                     <div class="budget-progress-bar" style="width: ${spentPercentage}%; background-color: ${spentPercentage >= 100 ? '#e53e3e' : '#48bb78'};"></div>
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.expense || item.income}</td>
-                <td>$${item.amount.toFixed(2)}</td>
+                <td>KES ${item.amount.toFixed(2)}</td>
                 <td>${item.account}</td>
                 <td>${item.date}</td>
             `;
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>🏦</span>
                 <div>
                     <p>${account.name}</p>
-                    <p class="text-sm text-gray-600">Kes.${account.balance.toFixed(2)}</p>
+                    <p class="text-sm text-gray-600">KES ${account.balance.toFixed(2)}</p>
                 </div>
             `;
             accountsListEl.appendChild(item);
@@ -136,19 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     };
 
+    // --- Add event listeners for Quick Actions and Auth Buttons ---
+    const actionButtons = document.querySelectorAll('.action-btn');
+    actionButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const action = event.target.textContent.trim().replace('➕', '').replace('➖', '').replace('🔁', '').replace('🏦', '').replace('🔖', '').trim();
+            let message = '';
+            if (action === 'Log In' || action === 'Register') {
+                message = `${action} button clicked!`;
+            } else {
+                message = `${action} created!`;
+            }
+            showNotification(message);
+        });
+    });
+
     // --- Initial Render ---
     renderBudgets();
     renderTable(sampleExpenses, 'expenses-table-body');
     renderTable(sampleIncomes, 'incomes-table-body');
     renderAccounts();
-
-    // --- Add event listeners for Quick Actions ---
-    const actionButtons = document.querySelectorAll('.action-btn');
-    actionButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            const action = event.target.textContent.trim().replace('➕', '').replace('➖', '').replace('🔁', '').replace('🏦', '').replace('🔖', '').trim();
-            const message = `${action} created!`;
-            showNotification(message);
-        });
-    });
 });
